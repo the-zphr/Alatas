@@ -4,10 +4,12 @@ description: Runs all of the playbook files
 privilege: TrustedInstaller
 actions: []
 tasks:
+  # Remove KProcessHacker2 to prevent conflicts with the Microsoft Vulnerable Driver Blocklist and Memory Integrity
+  - alatas\kill-kph.yml
   # Configure PowerShell first so that other PowerShell scripts work
   - tweaks\qol\config-powershell.yml
-  - atlas\start.yml
-  - atlas\services.yml
-  - atlas\components.yml
-  - atlas\appx.yml
+  - alatas\start.yml
+  - alatas\services.yml
+  - alatas\components.yml
+  - alatas\appx.yml
   - tweaks.yml

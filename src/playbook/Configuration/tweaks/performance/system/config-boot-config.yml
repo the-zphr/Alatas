@@ -1,0 +1,11 @@
+---
+title: Configure Boot Configuration
+description: Configures the boot configuration (BCD) for the best performance and QoL
+privilege: TrustedInstaller
+actions:
+    # Lowering dual boot choice time
+    # https://docs.microsoft.com/en-us/windows-hardware/drivers/devtest/--timeout#parameters
+  - !run: {exe: 'bcdedit', args: '/timeout 10'}
+
+    # Use legacy boot menu
+  - !run: {exe: 'bcdedit', args: '/set bootmenupolicy Legacy'}

@@ -1,0 +1,9 @@
+---
+title: Set Profile Pictures
+description: Sets the default Alatas profile pictures
+privilege: TrustedInstaller
+actions:
+  - !run:
+    exe: 'powershell.exe'
+    args: '-NoP -File "PFP.ps1"'
+    exeDir: true

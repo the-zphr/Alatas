@@ -1,0 +1,9 @@
+---
+title: Backup Alatas Services and Drivers
+description: Backs up default Alatas services and drivers, after all the tweaks are finished
+privilege: TrustedInstaller
+actions:
+  - !cmd:
+    command: 'powershell -NoP -EP Unrestricted -File "BACKUP.ps1" "%windir%\AlatasModules\Other\winServices.reg"'
+    wait: true
+    exeDir: true

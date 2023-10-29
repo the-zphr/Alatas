@@ -22,17 +22,17 @@ function New-Shortcut {
     $Shortcut.Save()
 }
 
-$defaultShortcut = "$env:SystemDrive\Users\Default\Desktop\Atlas.lnk"
-New-Shortcut -Icon "$env:windir\AtlasModules\Other\atlas-folder.ico,0" -Target "$env:windir\AtlasDesktop" -ShortcutPath $defaultShortcut
+$defaultShortcut = "$env:SystemDrive\Users\Default\Desktop\Alatas.lnk"
+New-Shortcut -Icon "$env:windir\AlatasModules\Other\alatas-folder.ico,0" -Target "$env:windir\AlatasDesktop" -ShortcutPath $defaultShortcut
 foreach ($user in $(Get-ChildItem -Path "$env:SystemDrive\Users" -Directory | Where-Object { 'Public' -notcontains $_.Name })) {
     Copy-Item $defaultShortcut -Destination "$($user.FullName)\Desktop" -Force
 }
 Copy-Item $defaultShortcut -Destination "$env:ProgramData\Microsoft\Windows\Start Menu\Programs" -Force
 
-$runAsTI = "$env:windir\AtlasModules\Scripts\RunAsTI.cmd"
-$default = "$env:windir\AtlasDesktop\8. Troubleshooting\Default"
-New-Shortcut -ShortcutPath "$default Windows Services and Drivers.lnk" -Target "$runAsTI" -Arguments "$env:windir\AtlasModules\Other\winServices.reg" -Icon "$env:windir\regedit.exe,1"
-New-Shortcut -ShortcutPath "$default Atlas Services and Drivers.lnk" -Target "$runAsTI" -Arguments "$env:windir\AtlasModules\Other\atlasServices.reg" -Icon "$env:windir\regedit.exe,1"
+$runAsTI = "$env:windir\AlatasModules\Scripts\RunAsTI.cmd"
+$default = "$env:windir\AlatasDesktop\8. Troubleshooting\Default"
+New-Shortcut -ShortcutPath "$default Windows Services and Drivers.lnk" -Target "$runAsTI" -Arguments "$env:windir\AlatasModules\Other\winServices.reg" -Icon "$env:windir\regedit.exe,1"
+New-Shortcut -ShortcutPath "$default Alatas Services and Drivers.lnk" -Target "$runAsTI" -Arguments "$env:windir\AlatasModules\Other\alatasServices.reg" -Icon "$env:windir\regedit.exe,1"
 
 # Fix Windows Tools shortcut in Windows 11
 $shortcutPath = "$env:appdata\Microsoft\Windows\Start Menu\Programs\Administrative Tools.lnk"

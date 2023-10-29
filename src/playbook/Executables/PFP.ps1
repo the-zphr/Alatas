@@ -23,14 +23,13 @@ foreach ($image in $resolutions.Keys) {
     $a.Save("$env:ProgramData\Microsoft\User Account Pictures\$image")
 }
 
-# Set Atlas profile picture for each user
+# Set Alatas profile picture for each user
 function SetUserProfileImage($sid) {
     $usrPfpDir = "$env:public\AccountPictures\$sid"
 
     if (!(Test-Path $usrPfpDir)) {
         # New-Item -Path $usrPfpDir -ItemType Directory -Force | Out-Null
         # This doesn't overwrite users that have manually set profile pictures
-        Write-Host "Not applying Atlas profile picture to $sid..."
         return
     }
 
@@ -42,8 +41,6 @@ function SetUserProfileImage($sid) {
     
         New-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\AccountPicture\Users\$sid" -Name "Image$resolution" `
         -PropertyType String -Value "$usrPfpDir\$resolution`x$resolution.png" -Force | Out-Null
-        
-        Write-Host "Applied Atlas profile picture to $sid..."
     }
 }
 

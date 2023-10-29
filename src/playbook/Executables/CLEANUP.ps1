@@ -1,8 +1,8 @@
-# AtlasOS Post-Installation Cleanup Utility
+# AlatasOS Post-Installation Cleanup Utility
 $ErrorActionPreference = 'SilentlyContinue'
 
 # As cleanmgr has multiple processes, there's no point in making the window hidden as it won't apply
-function Invoke-AtlasDiskCleanup {
+function Invoke-AlatasDiskCleanup {
 	# Kill running cleanmgr instances, as they will prevent new cleanmgr from starting
 	Get-Process -Name cleanmgr -ErrorAction SilentlyContinue | Stop-Process -Force -ErrorAction SilentlyContinue
 	# Disk Cleanup preset
@@ -50,10 +50,13 @@ foreach ($drive in $drives) {
     }
 }
 
-if (!($otherInstalls)) { Invoke-AtlasDiskCleanup }
+if (!($otherInstalls)) { Invoke-AlatasDiskCleanup }
+
+# Clear the temporary user folder
+Get-ChildItem -Path "$env:TEMP" -File | Remove-Item -Force
 
 # Exclude the AME folder while deleting directories in the temporary user folder
-Get-ChildItem -Path "$env:TEMP" | Where-Object { $_.Name -ne 'AME' } | Remove-Item -Force -Recurse
+Get-ChildItem -Path "$env:TEMP" -Directory | Where-Object { $_.Name -ne 'AME' } | Remove-Item -Force -Recurse
 
 # Clear the temporary system folder
 Remove-Item -Path "$env:windir\Temp\*" -Force -Recurse
@@ -63,3 +66,25 @@ vssadmin delete shadows /all /quiet
 
 # Clear Event Logs
 wevtutil el | ForEach-Object {wevtutil cl "$_"} 2>&1 | Out-Null
+
+Stop-Service -Name "dps" -Force
+Stop-Service -Name "wuauserv" -Force
+Stop-Service -Name "cryptsvc" -Force
+
+# Clean up leftovers
+$foldersToRemove = @(
+    "CbsTemp",
+    "Logs",
+    "SoftwareDistribution",
+    "System32\catroot2",
+    "System32\LogFiles",
+    "System32\sru",
+    "WinSxS\Backup"
+)
+
+foreach ($folderName in $foldersToRemove) {
+    $folderPath = Join-Path $env:SystemRoot $folderName
+    if (Test-Path $folderPath) {
+        Remove-Item -Path "$folderPath\*" -Force -Recurse 2>&1 | Out-Null
+    }
+}

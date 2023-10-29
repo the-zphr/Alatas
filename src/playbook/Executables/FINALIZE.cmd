@@ -146,10 +146,6 @@ for %%a in (
     attrib +h "%APPDATA%\Microsoft\Windows\SendTo\%%~a" > nul
 )
 
-:: Set RunOnce login script
-:: This is the script that will be ran on login for new users
-reg add HKU\AME_UserHive_Default\SOFTWARE\Microsoft\Windows\CurrentVersion\RunOnce /v RunScript /t REG_SZ /d "powershell -EP Unrestricted -NoP & \"$env:windir\AtlasModules\Scripts\newUsers.ps1\"" /f
-
 :: Remove Fax Recipient from the 'Send to' context menu as Fax feature is removed
 del /f /q "%APPDATA%\Microsoft\Windows\SendTo\Fax Recipient.lnk" > nul 2>&1
 
@@ -215,5 +211,5 @@ for %%a in (8 9 10 11 12 13 14 18 21 30 31 32) do if "%CHASSIS%" == "%%a" (set "
 
 :: Disable laptop-related services on PC
 if "%DEVICE_TYPE%" == "PC" (
-    call %windir%\AtlasModules\Scripts\setSvc.cmd DisplayEnhancementService 4
+    call %windir%\AlatasModules\Scripts\setSvc.cmd DisplayEnhancementService 4
 )

@@ -10,7 +10,7 @@
   •
   <a href="https://discord.atlasos.net" target="_blank">Atlas Discord</a>
   •
-  <a href="https://discord.gg/mBGv45HhpD" target="_blank">Alatas Discord</a>
+  <a href="https://discord.gg/mBGv45HhpD" target="_blank">Alatas Discord (WIP)</a>
   •
   <a href="https://forum.atlasos.net">Forum</a>
 </p>

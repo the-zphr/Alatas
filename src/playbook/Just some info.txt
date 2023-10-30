@@ -1,0 +1,14 @@
+Heya, Zephyr here
+
+So yeah, alatas is official - i will try to keep it updated, but im still a human being so dont expect me to be up to date all time
+
+Oh and AME detects it as Malicious, thats why there is folder with all Alatas stuff.
+i simply changed wallpapers, file names and slightly changed code - it was matter of changing from "enable bluetooth" to something else, so that might be why AME thinks its Malicious
+
+this peace of shit wouldnt be possible without help from Vytrol on discord. thanks again bro!
+
+Got some feedback? dm me on discord, or send your ideas and other stuff to alatas.zephyr@gmail.com
+
+The fuck am i doing now? Soon i will start working on AtlasOs RC2 based alatas. you can expect it... one day
+
+- Zephyr
